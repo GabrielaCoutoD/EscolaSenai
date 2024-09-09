@@ -1,6 +1,7 @@
 package com.escolasenai.poo.parte1;
 
 public abstract class Pessoa { // abstract porque é uma classe "pai"
+    public static int countRegistro = 1001;
 
     //Atributos da classe pai
     private int registro;
@@ -38,7 +39,13 @@ public abstract class Pessoa { // abstract porque é uma classe "pai"
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        if(cpf == null || cpf.isEmpty() || !isValidCpf(cpf)){
+            System.out.println("Número de CPF inválido");
+        }else{
+            this.cpf = cpf;
+
+        }
+       
     }
 
     public String getNome() {
@@ -86,9 +93,26 @@ public abstract class Pessoa { // abstract porque é uma classe "pai"
     }
 
     public void setSenha(String senha) {
+        if(senha == null || senha.isEmpty() || !isValidSenha(senha)){
+            System.out.println("Senha inválida");
+        }else{
         this.senha = senha;
     }
-
+}
+    private boolean isValidCpf(String cpf){
+        if(cpf.length() != 11){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    private boolean isValidSenha(String senha){
+        if(senha.length() < 8){
+            return false;
+        }else {
+            return true;
+        }
+    }
 }
 
     
