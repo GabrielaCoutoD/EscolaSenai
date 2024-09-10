@@ -1,5 +1,7 @@
 package com.escolasenai.poo.parte1;
 
+import java.util.Date;
+
 public abstract class Pessoa { // abstract porque é uma classe "pai"
     public static int countRegistro = 1001;
 
@@ -7,16 +9,17 @@ public abstract class Pessoa { // abstract porque é uma classe "pai"
     private int registro;
     private String cpf;
     private String nome;
-    private String dataNascimento;
+    private Date dataNascimento;
     private Endereco endereco;
     private String telefone;
     private String email;
     private String senha;
 
-    public Pessoa(int registro, String cpf, String nome, String dataNascimento, Endereco endereco, String telefone,
+    public Pessoa(int registro, String cpf, String nome, Date dataNascimento, Endereco endereco, String telefone,
                 String email, String senha){
 
-        this.registro = registro;
+        this.registro = countRegistro;
+        countRegistro++;
         this.cpf = cpf;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
@@ -25,13 +28,13 @@ public abstract class Pessoa { // abstract porque é uma classe "pai"
         this.email = email;
         this.senha = senha;
     }
+    public Pessoa(){
+        this.registro = countRegistro;
+        countRegistro++;
+    }
 
     public int getRegistro() {
         return registro;
-    }
-
-    public void setRegistro(int registro) {
-        this.registro = registro;
     }
 
     public String getCpf() {
@@ -43,7 +46,6 @@ public abstract class Pessoa { // abstract porque é uma classe "pai"
             System.out.println("Número de CPF inválido");
         }else{
             this.cpf = cpf;
-
         }
        
     }
@@ -56,11 +58,11 @@ public abstract class Pessoa { // abstract porque é uma classe "pai"
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -97,8 +99,8 @@ public abstract class Pessoa { // abstract porque é uma classe "pai"
             System.out.println("Senha inválida");
         }else{
         this.senha = senha;
+        }
     }
-}
     private boolean isValidCpf(String cpf){
         if(cpf.length() != 11){
             return false;
@@ -113,6 +115,14 @@ public abstract class Pessoa { // abstract porque é uma classe "pai"
             return true;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Pessoa [registro=" + registro + ", cpf=" + cpf + ", nome=" + nome + ", dataNascimento=" + dataNascimento
+                + ", endereco=" + endereco + ", telefone=" + telefone + ", email=" + email + ", senha=" + senha + "]";
+    }
+
+    
 }
 
     

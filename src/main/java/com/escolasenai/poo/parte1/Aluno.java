@@ -1,56 +1,55 @@
 package com.escolasenai.poo.parte1;
 
+import java.util.Date;
+
 public class Aluno extends Pessoa {
-    private String dataMatricula;
+    
+    private Date dataMatricula;
     private String curso;
-    private Notas notas;
+    private Situacao situacao;
 
 
-    public Aluno(int resgitro, String cpf, String nome, String dataNascimento, Endereco endereco, String telefone,
-                String email, String senha, String curso, String dataMatricula, Notas notas){
+    public Aluno(int registro, String cpf, String nome, Date dataNascimento, Endereco endereco, String telefone,
+                String email, String senha, String curso, Date dataMatricula, Situacao situacao){
 
-        super(resgitro, cpf, nome, dataNascimento, endereco, telefone, email, senha);
+        super(registro, cpf, nome, dataNascimento, endereco, telefone, email, senha);
         this.curso = curso;
         this.dataMatricula = dataMatricula;
-        this.notas = notas;
+        this.situacao = situacao;
+
     }
 
-
-    public String getDataMatricula() {
+    public Date getDataMatricula() {
         return dataMatricula;
     }
 
-
-    public void setDataMatricula(String dataMatricula) {
+    public void setDataMatricula(Date dataMatricula) {
         this.dataMatricula = dataMatricula;
     }
-
 
     public String getCurso() {
         return curso;
     }
 
-
     public void setCurso(String curso) {
         this.curso = curso;
     }
-
-
-    public Notas getNotas() {
-        return notas;
-    }
-
-
-    public void setNotas(Notas notas) {
-        this.notas = notas;
+    
+    public Situacao getSituacao() {
+        return situacao;
     }
     
+    public void setSituacao(Situacao situacao) {
+        this.situacao = situacao;
+    }
 
-
-    
+    @Override
+    public String toString() {
+        return "Aluno [dataMatricula=" + dataMatricula + ", curso=" + curso + ", situacao="
+                + situacao + "]";
+    }
 
 }
-
 
 
 
