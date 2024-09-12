@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class Aluno extends Pessoa {
+public class Aluno extends Pessoa implements Login, Conta {
     
     private Date dataMatricula;
     private String curso;
@@ -104,8 +104,48 @@ public class Aluno extends Pessoa {
             System.out.println("Não há aluno registrado.");
         }
     }
-}
+    @Override
+    public boolean acessoPermitido(String email, String senha) {
+        if (email.equals(getEmail()) && senha.equals(getSenha())){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
+    @Override
+    public void printConta(Aluno aluno, Nota notas, Situacao situacao,
+                          Disciplina disciplina) {
+        System.out.println("Aluno: " + aluno.getNome());
+        System.out.println("Nota: " + notas.getNotas());
+        System.out.println("Situação: " + situacao.getSistuacao());
+        System.out.println("Disciplina: " + disciplina.getNomeDisciplina());
+    }
+
+    public static void alimentarAluno(){
+        Aluno aluno1 = new Aluno();
+        aluno1.setNome("Luan");
+        aluno1.setDataMatricula(new Date());
+        aluno1.setEmail("luanG@gmail.com");
+        aluno1.setCurso("Desenvolvimento de Software");
+        alunosList.add(aluno1);
+
+        Aluno aluno2 = new Aluno();
+        aluno2.setNome("Ana");
+        aluno2.setDataMatricula(new Date());
+        aluno2.setEmail("ana@gmail.com");
+        aluno2.setCurso("Desenvolvimento de Software");
+        alunosList.add(aluno2);
+
+        Aluno aluno3 = new Aluno();
+        aluno3.setNome("Alice");
+        aluno3.setDataMatricula(new Date());
+        aluno3.setEmail("alice@gmail.com");
+        aluno3.setCurso("Desenvolvimento de Software");
+        alunosList.add(aluno3);
+          
+    }
+}
 
 
 

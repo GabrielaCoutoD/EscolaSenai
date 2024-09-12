@@ -2,10 +2,12 @@ package com.escolasenai.poo.parte1;
 
 import java.util.Scanner;
 
+import java.util.InputMismatchException;
+
 public class Secretaria extends Pessoa implements Login {
 
     @Override
-    public boolean acessAllowed(String email, String senha) {
+    public boolean acessoPermitido(String email, String senha) {
         if (email.equals(getEmail()) && senha.equals(getSenha())){
             return true;
         }else {
@@ -28,6 +30,10 @@ public class Secretaria extends Pessoa implements Login {
             Scanner sc = new Scanner(System.in);
             opcoesA = sc.nextInt();
             System.out.println("\n");
+            try {
+
+                opcoesA = sc.nextInt();
+                System.out.println("\n");
             switch(opcoesA){
                 case 1:
                     Aluno.registrarAluno();
@@ -48,6 +54,9 @@ public class Secretaria extends Pessoa implements Login {
                     System.out.println("Opção Inválida.");
                     break;
             }
+        }catch (InputMismatchException e){
+            System.out.println("Por favor digite um número inteiro.");
+        }
         }while(opcoesA != 0);
     }
 
@@ -66,6 +75,9 @@ public class Secretaria extends Pessoa implements Login {
             Scanner sc = new Scanner(System.in);
             opcoesP = sc.nextInt();
             System.out.println("\n");
+            try {
+                opcoesP = sc.nextInt();
+                System.out.println("\n");
             switch(opcoesP){
                 case 1:
                     Professor.registrarProfessor();
@@ -86,6 +98,9 @@ public class Secretaria extends Pessoa implements Login {
                     System.out.println("Opção Inválida.");
                     break;
             }
+        }catch (InputMismatchException e){
+            System.out.println("Por favor digite um número inteiro.");
+        }
         }while(opcoesP != 0);
     }
 }

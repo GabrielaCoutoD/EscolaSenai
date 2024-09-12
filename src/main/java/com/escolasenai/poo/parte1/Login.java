@@ -2,5 +2,5 @@ package com.escolasenai.poo.parte1;
 
 public interface Login {
 
-      public boolean acessAllowed(String mail, String password);
+      public boolean acessoPermitido(String email, String senha);
 }

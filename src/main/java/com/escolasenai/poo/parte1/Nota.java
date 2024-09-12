@@ -1,12 +1,12 @@
 package com.escolasenai.poo.parte1;
 
-public class Notas {
+public class Nota {
 
     private int notas;
     private Aluno aluno;
     private Disciplina disciplina;
 
-    public Notas(int notas, Aluno aluno, Disciplina disciplina) {
+    public Nota(int notas, Aluno aluno, Disciplina disciplina) {
         this.notas = notas;
         this.aluno = aluno;
         this.disciplina = disciplina;

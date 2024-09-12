@@ -3,10 +3,10 @@ package com.escolasenai.poo.parte1;
 public class Disciplina {
 
     private String nomeDisciplina;
-    private Notas notas;
+    private Nota notas;
     private Professor professor;
 
-    public Disciplina(String nomeDisciplina, Notas notas, Professor professor) {
+    public Disciplina(String nomeDisciplina, Nota notas, Professor professor) {
         this.nomeDisciplina = nomeDisciplina;
         this.notas = notas;
         this.professor = professor;
@@ -20,11 +20,11 @@ public class Disciplina {
         this.nomeDisciplina = nomeDisciplina;
     }
 
-    public Notas getNotas() {
+    public Nota getNotas() {
         return notas;
     }
 
-    public void setNotas(Notas notas) {
+    public void setNotas(Nota notas) {
         this.notas = notas;
     }
 

@@ -5,18 +5,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class Professor extends Pessoa  {
+public class Professor extends Pessoa implements Conta, Login  {
 
-    private String dataAdmissao;
+    private Date dataAdmissao;
     private Double salario;
 
     public static List<Professor> professoresList = new ArrayList<Professor>();
 
-    public String getDataAdmissao() {
+    public Date getDataAdmissao() {
         return dataAdmissao;
     }
 
-    public void setDataAdmissao(String dataAdmissao) {
+    public void setDataAdmissao(Date dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
     }
 
@@ -88,8 +88,58 @@ public class Professor extends Pessoa  {
             System.out.println("Não há professores registrados. \n");
         }
     }
-}
+    @Override
+    public boolean acessoPermitido(String email, String senha) {
+        if (email.equals(getEmail()) && senha.equals(getSenha())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    @Override
+    public void printConta(Aluno aluno, Nota notas, Situacao situacao, Disciplina disciplina) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Aluno: " + aluno.getNome());
+        int nota = sc.nextInt();
+        notas.setNotas(nota);;
+        System.out.println("Nota: " + notas.getNotas());
+        System.out.println("Situação: " + situacao.getSistuacao());
+        System.out.println("Disciplina: " + disciplina.getNomeDisciplina());
+
+    }
+
+    public static void alimentarProfessor(){
+        Professor professor1 = new Professor();
+        professor1.setNome("Arthur");
+        professor1.setSalario(3200.00);
+        professor1.setEmail("arthurG@gmail.com");
+        professor1.setDataAdmissao(new Date());
+        professoresList.add(professor1);
+
+        Professor professor2 = new Professor();
+        professor2.setNome("Roni");
+        professor2.setSalario(3200.00);
+        professor2.setEmail("roni@gmail.com");
+        professor2.setDataAdmissao(new Date());
+        professoresList.add(professor2);
+
+        Professor professor3 = new Professor();
+        professor3.setNome("Andre");
+        professor3.setSalario(3200.00);
+        professor3.setEmail("andre@gmail.com");
+        professor3.setDataAdmissao(new Date());
+        professoresList.add(professor3);
+
+        Professor professor4 = new Professor();
+        professor4.setNome("Pedro");
+        professor4.setSalario(3200.00);
+        professor4.setEmail("pedro@gmail.com");
+        professor4.setDataAdmissao(new Date());
+        professoresList.add(professor4);
+
+    }
+}
 
 
 
