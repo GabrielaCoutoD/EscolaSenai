@@ -1,22 +1,19 @@
 package com.escolasenai.poo.parte1;
 
 import java.util.Scanner;
-
 import java.util.InputMismatchException;
+import java.util.*;
 
-public class Secretaria extends Pessoa implements Login {
+public class Secretaria extends Pessoa{
 
-    @Override
-    public boolean acessoPermitido(String email, String senha) {
-        if (email.equals(getEmail()) && senha.equals(getSenha())){
-            return true;
-        }else {
-            return false;
-        }
-    }
+    private String email;
+    private String senha;
+
+    public static List<Secretaria> secretaria = new ArrayList<Secretaria>();
 
     public static void secretariaMenuAluno(){
-        int opcoesA;
+        int opcoesA = 8;
+
 
         do{
             System.out.println("\n- MENU -");
@@ -28,8 +25,7 @@ public class Secretaria extends Pessoa implements Login {
             System.out.println("0- Sair\n");
             System.out.print("Digite uma opção: ");
             Scanner sc = new Scanner(System.in);
-            opcoesA = sc.nextInt();
-            System.out.println("\n");
+            
             try {
 
                 opcoesA = sc.nextInt();
@@ -61,7 +57,7 @@ public class Secretaria extends Pessoa implements Login {
     }
 
     public static void secretariaMenuProfessor(){
-        int opcoesP;
+        int opcoesP = 8;
 
         do{
             System.out.println("\n- MENU -");
@@ -73,8 +69,7 @@ public class Secretaria extends Pessoa implements Login {
             System.out.println("0- Sair\n");
             System.out.print("Digite uma opção: ");
             Scanner sc = new Scanner(System.in);
-            opcoesP = sc.nextInt();
-            System.out.println("\n");
+            
             try {
                 opcoesP = sc.nextInt();
                 System.out.println("\n");
@@ -103,4 +98,13 @@ public class Secretaria extends Pessoa implements Login {
         }
         }while(opcoesP != 0);
     }
+    public static void alimentarSecretaria(){
+        Secretaria secretaria1 = new Secretaria();
+        secretaria1.setEmail("sc@gmail.com");
+        secretaria1.setSenha("Sc@!1973");
+        secretaria.add(secretaria1);
+}
+public static List<Secretaria> getSecretaria(){
+    return secretaria;
+}
 }

@@ -5,10 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class Aluno extends Pessoa implements Login, Conta {
+public class Aluno extends Pessoa{
     
     private Date dataMatricula;
     private String curso;
+    private Nota notas;
     private Situacao situacao;
 
     public static List<Aluno> alunosList = new ArrayList<Aluno>();
@@ -37,6 +38,14 @@ public class Aluno extends Pessoa implements Login, Conta {
         this.situacao = situacao;
     }
 
+    public Nota getNotas() {
+        return notas;
+    }
+
+    public void setNotas(Nota notas) {
+        this.notas = notas;
+    }
+
     @Override
     public String toString() {
         return "Aluno [dataMatricula=" + dataMatricula + ", curso=" + curso + ", situacao="
@@ -51,8 +60,7 @@ public class Aluno extends Pessoa implements Login, Conta {
         aluno.setNome(nome);
         Aluno.alunosList.add(aluno);
     }
-
-
+    
     public static void atualizarAluno(){
         if (!Aluno.alunosList.isEmpty()) {
 
@@ -97,30 +105,17 @@ public class Aluno extends Pessoa implements Login, Conta {
     public static void listarAlunos(){
         if(!Aluno.alunosList.isEmpty()){
             System.out.println("Listar alunos: ");
-            for (int i = 0; i< Aluno.alunosList.size(); i++){
-                System.out.println((i+1) + "- " + Aluno.alunosList.get(i).getNome());
+            for (Aluno a : alunosList){
+                System.out.println((alunosList.indexOf(a))+ "- " + a.getNome() + " / data matricula: " +
+                        a.getDataMatricula() + " / email: " + a.getEmail() + " / curso: "
+                        + a.getCurso());
             }
+            
         }else {
             System.out.println("Não há aluno registrado.");
         }
     }
-    @Override
-    public boolean acessoPermitido(String email, String senha) {
-        if (email.equals(getEmail()) && senha.equals(getSenha())){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    @Override
-    public void printConta(Aluno aluno, Nota notas, Situacao situacao,
-                          Disciplina disciplina) {
-        System.out.println("Aluno: " + aluno.getNome());
-        System.out.println("Nota: " + notas.getNotas());
-        System.out.println("Situação: " + situacao.getSistuacao());
-        System.out.println("Disciplina: " + disciplina.getNomeDisciplina());
-    }
+   
 
     public static void alimentarAluno(){
         Aluno aluno1 = new Aluno();
@@ -145,6 +140,9 @@ public class Aluno extends Pessoa implements Login, Conta {
         alunosList.add(aluno3);
           
     }
+    public static List<Aluno> getAlunosList(){
+        return alunosList;
+}
 }
 
 

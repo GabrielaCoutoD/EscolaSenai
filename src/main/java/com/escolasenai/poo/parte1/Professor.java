@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-public class Professor extends Pessoa implements Conta, Login  {
+public class Professor extends Pessoa{
 
     private Date dataAdmissao;
     private Double salario;
@@ -88,27 +88,7 @@ public class Professor extends Pessoa implements Conta, Login  {
             System.out.println("Não há professores registrados. \n");
         }
     }
-    @Override
-    public boolean acessoPermitido(String email, String senha) {
-        if (email.equals(getEmail()) && senha.equals(getSenha())) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public void printConta(Aluno aluno, Nota notas, Situacao situacao, Disciplina disciplina) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Aluno: " + aluno.getNome());
-        int nota = sc.nextInt();
-        notas.setNotas(nota);;
-        System.out.println("Nota: " + notas.getNotas());
-        System.out.println("Situação: " + situacao.getSistuacao());
-        System.out.println("Disciplina: " + disciplina.getNomeDisciplina());
-
-    }
-
+    
     public static void alimentarProfessor(){
         Professor professor1 = new Professor();
         professor1.setNome("Arthur");
@@ -138,6 +118,9 @@ public class Professor extends Pessoa implements Conta, Login  {
         professor4.setDataAdmissao(new Date());
         professoresList.add(professor4);
 
+    }
+    public static List<Professor> getProfessoresList(){
+        return professoresList;
     }
 }
 

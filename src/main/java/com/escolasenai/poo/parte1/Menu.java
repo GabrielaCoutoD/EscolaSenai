@@ -5,31 +5,95 @@ import java.util.InputMismatchException;
 
 public class Menu {
 
-    public static void menuFinal(){
+    public static String ususarioLogado = null;
+    public static String funcaoUsuario = null;
 
-        int opcaoM = 8;
+    public static void login(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-- Bem vindo ao sistema, entre com seu login --");
+        System.out.println("Email: ");
+        String userEmail = sc.nextLine();
+        System.out.println("Senha: ");
+        String senha = sc.nextLine();
+
+        for(Secretaria s : Secretaria.getSecretaria()) {
+            if (userEmail.equals(s.getEmail()) && senha.equals(s.getSenha())) {
+                ususarioLogado = userEmail;
+                funcaoUsuario = "Secretaria";
+                System.out.println("Login realizado com sucesso. (Secretaria)!");
+            }
+        }
+        for (Professor p: Professor.getProfessoresList()) {
+            if (userEmail.equals(p.getEmail()) && senha.equals(p.getSenha())){
+                ususarioLogado = userEmail;
+                funcaoUsuario = "Professor";
+                System.out.println("Login realizado com sucesso. (Professor)!");
+            }
+        }
+        for (Aluno a : Aluno.getAlunosList()) {
+            if (userEmail.equals(a.getEmail()) && senha.equals(a.getSenha())) {
+                ususarioLogado = userEmail;
+                funcaoUsuario = "Aluno";
+                System.out.println("Login realizado com sucesso. (Aluno)!");
+            }
+        }
+        if(userEmail.isEmpty() || senha.isEmpty()){
+            System.out.println("Email ou senha inválido.");
+            ususarioLogado = null;
+            funcaoUsuario = null;
+        }
+    }
+
+        public static void menuFinal(){
+
+            int opcaoM = 8;
+            if (ususarioLogado == null){
+                System.out.println("Você precisa fazer o login antes.");
+                login();
+            }
+    
         do{
 
                 System.out.println("\n- MENU -");
                 System.out.println("O que você quer fazer?");
-                System.out.println("1- Menu Aluno.");
-                System.out.println("2- Menu Professor:");
+                if(funcaoUsuario.equals("Secretaria")) {
+                    System.out.println("1- Menu Aluno.");
+                    System.out.println("2- Menu Professor:");
+                }else if (funcaoUsuario.equals("Professor")){
+                    System.out.println("1- Imprime boletim");
+                    System.out.println("2- Lançar notas");
+                } else if (funcaoUsuario.equals("Aluno")) {
+                    System.out.println("1- Meu boletim");
+                }
                 System.out.println("0- Sair\n");
                 System.out.print("Digite uma opção: ");
                 Scanner sc = new Scanner(System.in);
-            try {
+
+                try {
                 opcaoM = sc.nextInt();
                 System.out.println("\n");
                 switch (opcaoM) {
 
                     case 1:
+                    if (funcaoUsuario.equals("Secretaria")) {
                         Secretaria.secretariaMenuAluno();
-                        break;
+                    }else if (funcaoUsuario.equals("Professor")){
+                        System.out.println("O boletim foi impresso");
+                    }else if (funcaoUsuario.equals("Aluno")){
+                        System.out.println("Boletim impresso");
+                    }
+                    break;
                     case 2:
-                        Secretaria.secretariaMenuProfessor();
-                        break;
+                            if (funcaoUsuario.equals("Secretaria")) {
+                                Secretaria.secretariaMenuProfessor();
+                            }else if (funcaoUsuario.equals("Professor")){
+                                System.out.println("Lançar notas: ");
+                            }
+                            break;
                     case 0:
                         System.out.println("Saindo");
+                        funcaoUsuario = null;
+                        ususarioLogado = null;
                         break;
                     default:
                         System.out.println("Opção Inválida.");
@@ -39,6 +103,6 @@ public class Menu {
                 System.out.println("Por favor digite um número inteiro!");
             }
         }while(opcaoM != 0);
-
-}
-}
+                
+        }
+    }
