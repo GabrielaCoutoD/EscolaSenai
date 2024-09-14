@@ -81,8 +81,8 @@ public class Professor extends Pessoa{
     public static void listarProfessores(){
         if(!Professor.professoresList.isEmpty()){
             System.out.println("Listar professores: ");
-            for (int i = 0; i< Professor.professoresList.size(); i++){
-                System.out.println((i+1) + "- " + Professor.professoresList.get(i).getNome());
+            for (Professor p : professoresList){
+                System.out.println((professoresList.indexOf(p)) + "-" + p.getNome() + "/ salrio:" + p.getSalario());
             }
         }else {
             System.out.println("Não há professores registrados. \n");
@@ -95,6 +95,7 @@ public class Professor extends Pessoa{
         professor1.setSalario(3200.00);
         professor1.setEmail("arthurG@gmail.com");
         professor1.setDataAdmissao(new Date());
+        professor1.setSenha("MA@!1999");
         professoresList.add(professor1);
 
         Professor professor2 = new Professor();
@@ -102,6 +103,7 @@ public class Professor extends Pessoa{
         professor2.setSalario(3200.00);
         professor2.setEmail("roni@gmail.com");
         professor2.setDataAdmissao(new Date());
+        professor2.setSenha("PE@!1999");
         professoresList.add(professor2);
 
         Professor professor3 = new Professor();
@@ -109,6 +111,7 @@ public class Professor extends Pessoa{
         professor3.setSalario(3200.00);
         professor3.setEmail("andre@gmail.com");
         professor3.setDataAdmissao(new Date());
+        professor3.setSenha("LU@!1999");
         professoresList.add(professor3);
 
         Professor professor4 = new Professor();
@@ -116,6 +119,7 @@ public class Professor extends Pessoa{
         professor4.setSalario(3200.00);
         professor4.setEmail("pedro@gmail.com");
         professor4.setDataAdmissao(new Date());
+        professor4.setSenha("PE@!1999");
         professoresList.add(professor4);
 
     }

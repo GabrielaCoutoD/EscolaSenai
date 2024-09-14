@@ -12,6 +12,16 @@ public class Aluno extends Pessoa{
     private Nota notas;
     private Situacao situacao;
 
+    private List<Nota> notasList = new ArrayList<>();
+
+    public List<Nota> getNotesList() {
+        return notasList;
+    }
+
+    public void addNote(Nota nota) {
+        this.notasList.add(nota);
+    }
+
     public static List<Aluno> alunosList = new ArrayList<Aluno>();
 
     public Date getDataMatricula() {
@@ -36,14 +46,6 @@ public class Aluno extends Pessoa{
     
     public void setSituacao(Situacao situacao) {
         this.situacao = situacao;
-    }
-
-    public Nota getNotas() {
-        return notas;
-    }
-
-    public void setNotas(Nota notas) {
-        this.notas = notas;
     }
 
     @Override
@@ -120,21 +122,18 @@ public class Aluno extends Pessoa{
     public static void alimentarAluno(){
         Aluno aluno1 = new Aluno();
         aluno1.setNome("Luan");
-        aluno1.setDataMatricula(new Date());
         aluno1.setEmail("luanG@gmail.com");
         aluno1.setCurso("Desenvolvimento de Software");
         alunosList.add(aluno1);
 
         Aluno aluno2 = new Aluno();
         aluno2.setNome("Ana");
-        aluno2.setDataMatricula(new Date());
         aluno2.setEmail("ana@gmail.com");
         aluno2.setCurso("Desenvolvimento de Software");
         alunosList.add(aluno2);
 
         Aluno aluno3 = new Aluno();
         aluno3.setNome("Alice");
-        aluno3.setDataMatricula(new Date());
         aluno3.setEmail("alice@gmail.com");
         aluno3.setCurso("Desenvolvimento de Software");
         alunosList.add(aluno3);
@@ -143,8 +142,16 @@ public class Aluno extends Pessoa{
     public static List<Aluno> getAlunosList(){
         return alunosList;
 }
+public static Aluno getAlunoByEmail(String email){
+    for (Aluno aluno : alunosList){
+        if (aluno.getEmail().equals(email)){
+            return aluno;
+        }
+    }
+    return null;
 }
 
+}
 
 
 

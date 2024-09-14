@@ -1,15 +1,31 @@
 package com.escolasenai.poo.parte1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Disciplina {
 
     private String nomeDisciplina;
-    private Nota notas;
-    private Professor professor;
+    
+    private List<Nota> notasList = new ArrayList<>();
 
-    public Disciplina(String nomeDisciplina, Nota notas, Professor professor) {
-        this.nomeDisciplina = nomeDisciplina;
-        this.notas = notas;
-        this.professor = professor;
+    public List<Nota> getNotasList(){
+        return notasList;
+    }
+
+    public void addNota(Nota nota){
+        this.notasList.add(nota);
+    }
+
+    public static List<Disciplina> disciplinasList = new ArrayList<Disciplina>();
+
+    public Disciplina getDisciplinaByNome(String nomeDisciplina) {
+        for (Disciplina disciplina : disciplinasList){
+            if(disciplina.getNomeDisciplina().equals(nomeDisciplina)){
+                return disciplina;
+            }
+        }
+        return null;
     }
 
     public String getNomeDisciplina() {
@@ -19,29 +35,35 @@ public class Disciplina {
     public void setNomeDisciplina(String nomeDisciplina) {
         this.nomeDisciplina = nomeDisciplina;
     }
-
-    public Nota getNotas() {
-        return notas;
+    public static List<Disciplina> getDisciplinasList(){
+        return disciplinasList;
     }
 
-    public void setNotas(Nota notas) {
-        this.notas = notas;
+    public static void showDisciplinasList(){
+        if(!Disciplina.disciplinasList.isEmpty()){
+            System.out.println("Lista de disciplinas: ");
+            for (Disciplina d : disciplinasList){
+                System.out.println((disciplinasList.indexOf(d))+ "- " + d.getNomeDisciplina());
+            }
+        }else {
+            System.out.println("Não há nenhuma disciplina resgistrada. \n");
+        }
     }
 
-    public Professor getProfessor() {
-        return professor;
-    }
 
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }
+    public static void alimentarDisciplina(){
+        Disciplina disciplina1 = new Disciplina();
+        disciplina1.setNomeDisciplina("JAVA");
+        disciplinasList.add(disciplina1);
 
-    @Override
-    public String toString() {
-        return "Disciplina [nomeDisciplina=" + nomeDisciplina + ", notas=" + notas + ", professor=" + professor + "]";
-    }
-      
+        Disciplina disciplina2 = new Disciplina();
+        disciplina2.setNomeDisciplina("LOGIC");
+        disciplinasList.add(disciplina2);
 
+        Disciplina disciplina3 = new Disciplina();
+        disciplina3.setNomeDisciplina("DBA");
+        disciplinasList.add(disciplina3);
+    }
 }
 
 

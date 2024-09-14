@@ -4,9 +4,9 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 public class Menu {
-
-    public static String ususarioLogado = null;
-    public static String funcaoUsuario = null;
+    private static Situacao situacao;
+    private static String ususarioLogado = null;
+    private static String funcaoUsuario = null;
 
     public static void login(){
         Scanner sc = new Scanner(System.in);
@@ -16,11 +16,14 @@ public class Menu {
         System.out.println("Senha: ");
         String senha = sc.nextLine();
 
+        boolean usuarioValido = false;
+
         for(Secretaria s : Secretaria.getSecretaria()) {
             if (userEmail.equals(s.getEmail()) && senha.equals(s.getSenha())) {
                 ususarioLogado = userEmail;
                 funcaoUsuario = "Secretaria";
                 System.out.println("Login realizado com sucesso. (Secretaria)!");
+                usuarioValido = true;
             }
         }
         for (Professor p: Professor.getProfessoresList()) {
@@ -28,6 +31,7 @@ public class Menu {
                 ususarioLogado = userEmail;
                 funcaoUsuario = "Professor";
                 System.out.println("Login realizado com sucesso. (Professor)!");
+                usuarioValido = true;
             }
         }
         for (Aluno a : Aluno.getAlunosList()) {
@@ -35,15 +39,14 @@ public class Menu {
                 ususarioLogado = userEmail;
                 funcaoUsuario = "Aluno";
                 System.out.println("Login realizado com sucesso. (Aluno)!");
+                usuarioValido = true;
             }
         }
-        if(userEmail.isEmpty() || senha.isEmpty()){
-            System.out.println("Email ou senha inválido.");
-            ususarioLogado = null;
-            funcaoUsuario = null;
+        if (!usuarioValido){
+            System.out.println("Email ou senha invpalidos. Por favor tente outra vez");
+            login();
         }
     }
-
         public static void menuFinal(){
 
             int opcaoM = 8;
@@ -61,7 +64,7 @@ public class Menu {
                     System.out.println("2- Menu Professor:");
                 }else if (funcaoUsuario.equals("Professor")){
                     System.out.println("1- Imprime boletim");
-                    System.out.println("2- Lançar notas");
+                    
                 } else if (funcaoUsuario.equals("Aluno")) {
                     System.out.println("1- Meu boletim");
                 }

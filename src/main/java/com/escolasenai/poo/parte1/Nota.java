@@ -1,16 +1,16 @@
 package com.escolasenai.poo.parte1;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Nota {
 
     private int notas;
     private Aluno aluno;
     private Disciplina disciplina;
 
-    public Nota(int notas, Aluno aluno, Disciplina disciplina) {
-        this.notas = notas;
-        this.aluno = aluno;
-        this.disciplina = disciplina;
-    }
+    public static List<Nota> notasList = new ArrayList<Nota>();
 
     public int getNotas() {
         return notas;
@@ -35,9 +35,10 @@ public class Nota {
     public void setDisciplina(Disciplina disciplina) {
         this.disciplina = disciplina;
     }
+    public static List<Nota> getNotasList() {
+        return notasList;
+    }
     
-
-
 }
 
 
